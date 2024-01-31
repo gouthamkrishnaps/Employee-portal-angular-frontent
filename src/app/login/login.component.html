@@ -1,0 +1,25 @@
+
+<div class="login-container">
+    <div class="d-flex justify-content-center align-items-center" style="height: 92vh;">
+        <div class="w-25 card rounded-5 card-login shadow p-5 border border-0">
+            <form (ngSubmit)="login()" #loginfrom="ngForm">
+                <h1 class="text-center mb-5 fw-bold fs-2">Login</h1>
+                <div class="mb-4">
+                    <input  type="text" class="form-control w-100" placeholder="Email" [(ngModel)]="mail" email required  name="mail" #useremail="ngModel">
+                    <span *ngIf="useremail.invalid && useremail.touched" class="text-danger">Invalid Email</span>
+                </div>
+                <div class="mb-4">
+                    <input type="password" class="form-control w-100" placeholder="Password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d].{7,}$" [(ngModel)]="pswd" required  name="pswd" #userpswd="ngModel">
+                    <span *ngIf="userpswd.invalid && userpswd.touched" class="text-danger">Invalid password</span>
+                </div>
+                <div class="text-center">
+                    <!-- [disabled]="loginfrom.invalid" use this to disable button -->
+                    <button type="submit"  class="btn btn-success w-50">Login</button> 
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+    <script src="sweetalert2.min.js"></script>
+</div>

@@ -1,0 +1,81 @@
+<div class="row d-flex">
+    <div *ngIf="showSidebar" class="col-2 bg-dark">
+        <div  class=" d-flex align-items-center flex-column" >
+            <a routerLink="/dashboard" class="dashboard-btn btn btn-light" href="" style="text-decoration: none;color: rgb(0, 0, 0);">Dashboard</a>
+            <a routerLink="/employees" class="dashboard-btn btn btn-light" href="" style="text-decoration: none;color: rgb(0, 0, 0);">Employee List</a>
+        </div>
+    </div>
+    <div class="col-10 pe-4" style="height: 92vh;">
+        <div class="row">
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-12 " >
+                        <div class="card d-flex justify-content-center align-items-center w-100 ms-auto my-2 shadow " style="height: 150px;background-color: rgb(255, 0, 47);">
+                            <div class="d-flex gap-2">
+                                
+                                <h1 class="fw-bold fs-1 text-light"><a><i class="fa-solid fa-bars fs-1"></i></a> Welcome {{adminName}}</h1>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                       <div class="card ms-auto shadow p-2" style="height: 500px;">
+                            <mat-card class="demo-inline-calendar-card  " style="background-color: rgb(255, 251, 0);">
+                                <mat-calendar [(selected)]="selected"></mat-calendar>
+                              </mat-card>
+                              <p>Selected date: {{selected}}</p>
+                       </div>
+                          
+                    </div>
+                    <div class="col-6 ">
+                        <div class="card ms-auto shadow " style="height: 500px;">
+                            <div class="">
+                                <highcharts-chart
+                                [Highcharts]="Highcharts"
+                                [options]="chartOptions"
+                                style="width: 100%; height: 400px; display: block;"
+                                ></highcharts-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 d-flex flex-column">
+                <div class="row">
+                    <div class="col-12 ">
+                    <div *ngIf="!EditAdminStatus" class="card my-2 shadow d-flex justify-content-center align-items-center"  style="height: 470px;background-color: rgb(255, 255, 255);">
+                        <h2 class="text-center fs-1 fw-bold mb-5">Profile</h2>
+                        <img src={{profileImage}} class="rounded-circle shadow" alt="" height="250px" width="250px">
+                        <a class="mt-4 fs-5" (click)="edit()" style="text-decoration: none;color: black;">Edit Admin Detials <i class="fa-solid fa-pen-nib"></i></a>
+                    </div>
+                    <div *ngIf="EditAdminStatus" class="card ms-auto my-2 shadow d-flex justify-content-center align-items-center"  style="height: 470px;">
+                        <h3 class="fw-bold fs-3">Edit your Detials</h3>
+                        <label>
+                            <input (change)="getFile($event)" type="file" style="display: none;">
+                            <img src={{profileImage}} class="rounded-circle" alt="" height="150px" width="150px">
+                        </label>
+                        <div class="mt-5 w-100 d-flex justify-content-center  align-items-center flex-column">
+                            <input [(ngModel)]="adminDetials.name" type="text" class="form-control w-75 mb-3" placeholder="Username">
+                            <input [(ngModel)]="adminDetials.password" type="text" class="form-control w-75" placeholder="Password">
+                        </div>
+                        <div class="mt-5 w-75 d-flex justify-content-between">
+                            <button (click)="reset()" class="btn btn-outline-warning">Cancel</button>
+                            <button (click)="updateAdmin()" class="btn btn-outline-success">Upload</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                       <div class=" card my-2 shadow d-flex justify-content-center align-items-center"  style="height: 169px;background-color: rgb(104, 226, 43);"> 
+                            <h1 class="fw-bold fs-1">Employees:<span style="color: rgb(255, 255, 255);">{{employeeCount}}</span></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="sweetalert2.min.js"></script>
+</div>
